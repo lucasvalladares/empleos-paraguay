@@ -113,3 +113,20 @@ Fontes das notícias citadas: [Última Hora: 986 vagas no EmpleaPy](https://www.
 [Última Hora: vagas da Capaser](https://www.ultimahora.com/ofrecen-mas-de-200-vacantes-en-tercerizacion-de-servicios) ·
 [ABC: lançamento do ABC Empleos](https://www.abc.com.py/abc-color/2026/04/13/abc-empleos-una-plataforma-integral-para-buscar-trabajo-en-paraguay/) ·
 [UNjobnet: Asunción](https://www.unjobnet.org/countries/Paraguay/Asuncion)
+
+---
+
+## D) Consultorias de recrutamento paraguaias (adendo de 17/11/2026)
+
+| Fonte | URL | Acesso | Vagas PY hoje | Permitido | Esforço |
+|---|---|---|---|---|---|
+| **Jobs Paraguay** (rede Jobs) | `jobs.com.py/es/empleos` (categorias: administração, comercial, construção, industrial, logística, marketing, RH, varejo…) | as vagas são carregadas por um widget (provavelmente Zoho Recruit); o HTML não traz a lista | contagens por categoria na página (37, 15, 8…), não verificadas | sim (robots: `Allow: /`); termos em PDF de 2016 não lidos | médio |
+| **Capital Humano** | `capitalhumano.postulate.com.py/UI/Externo/VacanciasList.aspx` | lista carregada por JavaScript (ASP.NET) | não verificado; **4 vagas dela aparecem no ABC Empleos** | sem robots.txt (404); termos não lidos | médio |
+| **ManpowerGroup Paraguay** | `manpower.com.py` (portal "Evolution") | o site **recusou** o pedido do robots.txt (403) | — | **não** (tratado como bloqueio) | — |
+| **Talent Hub PY** | via ABC Empleos | — | **12 vagas no ABC Empleos** | via ABC | — |
+| Adecco, Randstad | `adecco.com.py`, `randstad.com.py` | os domínios não respondem | — | — | — |
+
+**Atualização do ABC Empleos:** a lista vem da API do próprio site (`empleos.abc.com.py/api/ofertas/`), num único pedido.
+Hoje são **63 vagas abertas**, com empresa, área, cidades, modalidade e datas de publicação e vencimento.
+O ABC também concentra vagas de consultorias (Talent Hub PY: 12; Capital Humano: 4; Azeta Mandatos: 10).
+A pedido do usuário, as vagas entram na lista de revisão. A questão dos termos de uso continua em aberto antes de publicar.
