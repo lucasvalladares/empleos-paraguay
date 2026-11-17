@@ -6,7 +6,7 @@
 <title>Empleos Paraguay</title>
 <link rel="stylesheet" href="vendor/leaflet.css">
 <style>
-:root { --tinta: #111; --suave: #6b6b6b; --linha: #e6e6e6; --destaque: #E4572E; --fundo: #fff; --tempo: .6s; }
+:root { --largura-painel: min(440px, 42vw); --tinta: #111; --suave: #6b6b6b; --linha: #e6e6e6; --destaque: #E4572E; --fundo: #fff; --tempo: .6s; }
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; background: var(--fundo); color: var(--tinta);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
@@ -47,7 +47,7 @@ body { display: flex; flex-direction: column; }
 .mapa-caixa { position: relative; width: 100%; flex: none; transition: width var(--tempo) cubic-bezier(.65,0,.35,1); }
 .painel { flex: 1; min-width: 0; overflow: auto; opacity: 0; transform: translateX(40px);
   transition: opacity var(--tempo), transform var(--tempo) cubic-bezier(.65,0,.35,1); border-left: 1px solid var(--linha); }
-body.com-vaga .mapa-caixa { width: 32%; }
+body.com-vaga .mapa-caixa { width: calc(100% - var(--largura-painel)); }   /* o painel fica só com a largura de leitura */
 body.com-vaga .painel { opacity: 1; transform: none; }
 #mapa { position: absolute; inset: 0; background: var(--fundo); }
 .leaflet-container { background: var(--fundo); font: inherit; }
@@ -79,16 +79,14 @@ body.com-vaga .painel { opacity: 1; transform: none; }
 .voltar-mapa { position: absolute; top: 12px; left: 12px; z-index: 700; border: 1px solid var(--tinta); background: #fff; border-radius: 8px;
   padding: 7px 12px; font: inherit; font-size: 13px; cursor: pointer; }
 .voltar-mapa:hover { background: var(--tinta); color: #fff; }
-body.com-vaga .leaflet-control-zoom { display: none; }
-body.com-vaga .canto { font-size: 12px; padding: 6px 9px; }
 
 /* painel da vaga */
-.painel-miolo { max-width: 620px; padding: 40px 48px; }
+.painel-miolo { padding: 36px 32px; }
 .painel .local { font-size: 13px; color: var(--suave); text-transform: uppercase; letter-spacing: .05em; }
-.painel h2 { font-size: 34px; line-height: 1.1; margin: 8px 0 32px; letter-spacing: -.02em; }
+.painel h2 { font-size: 30px; line-height: 1.1; margin: 8px 0 32px; letter-spacing: -.02em; }
 .painel .instr { font-size: 14px; color: var(--suave); margin: 0 0 8px; }
 .email-linha { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 16px; border: 1px solid var(--tinta); border-radius: 10px; }
-.email-linha a { color: var(--tinta); font-size: 18px; font-weight: 600; word-break: break-all; flex: 1; }
+.email-linha a { color: var(--tinta); font-size: 16px; font-weight: 600; overflow-wrap: anywhere; flex: 1; min-width: 0; }
 .copiar { border: 1px solid var(--tinta); background: #fff; border-radius: 8px; padding: 8px 14px; font: inherit; font-size: 13px; cursor: pointer; white-space: nowrap; }
 .copiar:hover { background: var(--tinta); color: #fff; }
 .copiar.ok { background: var(--tinta); color: #fff; }
@@ -109,9 +107,9 @@ body.com-vaga .canto { font-size: 12px; padding: 6px 9px; }
   .busca { flex-basis: 100%; order: 3; }
   .palco { flex-direction: column; }
   .mapa-caixa { width: 100% !important; height: 100%; transition: height var(--tempo) cubic-bezier(.65,0,.35,1); }
-  body.com-vaga .mapa-caixa { height: 34%; }
+  body.com-vaga .mapa-caixa { height: 50%; }
   .painel { border-left: 0; border-top: 1px solid var(--linha); flex: 0 0 auto; height: 0; }
-  body.com-vaga .painel { height: 66%; }
+  body.com-vaga .painel { height: 50%; }
   .painel-miolo { padding: 24px 18px; }
   .painel h2 { font-size: 26px; margin-bottom: 20px; }
 }
@@ -347,7 +345,9 @@ function desenharVaga() {
   el('h2', null, mi, v.ocupacion);
   el('p', {class: 'instr'}, mi, 'Enviá tu CV a:');
   const linha = el('div', {class: 'email-linha'}, mi);
-  el('a', {href: 'mailto:' + v.email + '?subject=' + encodeURIComponent('Postulación: ' + v.ocupacion)}, linha, v.email);
+  const a = el('a', {href: 'mailto:' + v.email + '?subject=' + encodeURIComponent('Postulación: ' + v.ocupacion)}, linha);
+  const [usuario, dominio] = v.email.split('@');   // se não couber, quebra no "@"
+  a.append(usuario); a.appendChild(document.createElement('wbr')); a.append('@' + dominio);
   const cp = el('button', {class: 'copiar', type: 'button'}, linha, 'Copiar');
   cp.onclick = () => copiar(v.email, cp);
   const nav = el('div', {class: 'navegar'}, mi);
