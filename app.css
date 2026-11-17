@@ -1,0 +1,117 @@
+:root { --largura-painel: min(440px, 42vw); --tinta: #111; --suave: #6b6b6b; --linha: #e6e6e6; --destaque: #E4572E; --fundo: #fff; --tempo: .6s; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--fundo); color: var(--tinta);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+body { display: flex; flex-direction: column; }
+
+/* ---------- topo: busca ---------- */
+.topo { display: flex; align-items: center; gap: 20px; padding: 14px 20px; border-bottom: 1px solid var(--linha); position: relative; z-index: 1000; }
+.marca { font-size: 18px; white-space: nowrap; letter-spacing: -.01em; }
+.busca { position: relative; flex: 1; max-width: 720px; }
+.campo { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-height: 44px; padding: 5px 6px 5px 12px;
+  border: 1px solid var(--tinta); border-radius: 10px; background: #fff; cursor: text; }
+.campo:focus-within { box-shadow: 0 0 0 3px rgba(17,17,17,.08); }
+.chips { display: contents; }
+.chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 4px 4px 10px; border-radius: 999px; background: var(--tinta);
+  color: #fff; font-size: 13px; white-space: nowrap; }
+.chip button { border: 0; background: none; color: #fff; cursor: pointer; font-size: 15px; line-height: 1; padding: 0 4px; opacity: .8; }
+.chip button:hover { opacity: 1; }
+#entrada { flex: 1; min-width: 180px; border: 0; outline: 0; font: inherit; font-size: 15px; padding: 6px 0; background: none; }
+.limpar, .abrir { border: 0; background: none; font: inherit; cursor: pointer; color: var(--suave); padding: 6px 8px; border-radius: 6px; }
+.limpar { font-size: 13px; text-decoration: underline; }
+.limpar:hover, .abrir:hover { color: var(--tinta); background: #f4f4f4; }
+.abrir { font-size: 14px; }
+.lista { position: absolute; left: 0; right: 0; top: calc(100% + 6px); margin: 0; padding: 6px; list-style: none; max-height: 360px; overflow: auto;
+  background: #fff; border: 1px solid var(--tinta); border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+.lista li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+.lista li.ativo { background: #f2f2f2; }
+.lista li .caixa { width: 16px; height: 16px; border: 1.5px solid var(--tinta); border-radius: 4px; flex: none; display: grid; place-items: center; }
+.lista li[aria-selected="true"] .caixa { background: var(--tinta); }
+.lista li[aria-selected="true"] .caixa::after { content: ""; width: 8px; height: 4px; border: 2px solid #fff; border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); }
+.lista li .n { margin-left: auto; color: var(--suave); font-size: 12px; }
+.lista li.zero { color: #9a9a9a; }
+.lista .vazio, .lista .dica { padding: 10px; color: var(--suave); font-size: 13px; cursor: default; }
+.resumo { font-size: 12px; color: var(--suave); margin-top: 6px; min-height: 15px; }
+.aviso-teste { font-size: 12px; padding: 5px 10px; border: 1px dashed var(--destaque); color: var(--destaque); border-radius: 999px; white-space: nowrap; }
+
+/* ---------- palco: mapa + painel ---------- */
+.palco { flex: 1; display: flex; min-height: 0; position: relative; }
+.mapa-caixa { position: relative; width: 100%; flex: none; transition: width var(--tempo) cubic-bezier(.65,0,.35,1); }
+.painel { flex: 1; min-width: 0; overflow: auto; opacity: 0; transform: translateX(40px);
+  transition: opacity var(--tempo), transform var(--tempo) cubic-bezier(.65,0,.35,1); border-left: 1px solid var(--linha); }
+body.com-vaga .mapa-caixa { width: calc(100% - var(--largura-painel)); }   /* o painel fica só com a largura de leitura */
+body.com-vaga .painel { opacity: 1; transform: none; }
+#mapa { position: absolute; inset: 0; background: var(--fundo); }
+.leaflet-container { background: var(--fundo); font: inherit; }
+.leaflet-control-attribution { font-size: 10px; background: rgba(255,255,255,.8) !important; }
+
+/* pins */
+.icone { background: none; border: 0; }
+.pin { position: relative; width: 100%; height: 100%; cursor: pointer; transition: transform .15s; transform-origin: 50% 100%; }
+.pin:hover { transform: scale(1.12); }
+.pin svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+.pin-cidade .qtd { position: absolute; top: 8px; left: 0; right: 0; text-align: center; color: #fff; font-size: 12px; font-weight: 700; }
+.pin-cidade .nome { position: absolute; left: calc(100% + 4px); top: 7px; white-space: nowrap; font-size: 13px; font-weight: 600;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff; pointer-events: none; }
+.pin-cidade.vazia { opacity: .3; }
+.pin-vaga.sel { transform: scale(1.3); }
+.pin-vaga.sel path { fill: var(--tinta); }
+.rotulo-cidade { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--suave); white-space: nowrap;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff; pointer-events: none; }
+
+/* cantos: remotas (esquerda) e sem cidade (direita) */
+.canto { position: absolute; bottom: 14px; z-index: 600; display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px;
+  border: 1px solid var(--tinta); background: #fff; font: inherit; font-size: 13px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.canto:hover { background: #f6f6f6; }
+.canto b { font-size: 15px; }
+.canto.vazio { opacity: .35; }
+.canto-remoto { left: 14px; }
+.canto-sem { right: 14px; }
+.canto svg { width: 18px; height: 24px; flex: none; }
+.voltar-mapa { position: absolute; top: 12px; left: 12px; z-index: 700; border: 1px solid var(--tinta); background: #fff; border-radius: 8px;
+  padding: 7px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.voltar-mapa:hover { background: var(--tinta); color: #fff; }
+
+/* painel da vaga */
+.painel-miolo { padding: 36px 32px; }
+.painel .local { font-size: 13px; color: var(--suave); text-transform: uppercase; letter-spacing: .05em; }
+.painel h2 { font-size: 30px; line-height: 1.1; margin: 8px 0 32px; letter-spacing: -.02em; }
+.painel .instr { font-size: 14px; color: var(--suave); margin: 0 0 8px; }
+.email-linha { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 16px; border: 1px solid var(--tinta); border-radius: 10px; }
+.email-linha a { color: var(--tinta); font-size: 16px; font-weight: 600; overflow-wrap: anywhere; flex: 1; min-width: 0; }
+.copiar { border: 1px solid var(--tinta); background: #fff; border-radius: 8px; padding: 8px 14px; font: inherit; font-size: 13px; cursor: pointer; white-space: nowrap; }
+.copiar:hover { background: var(--tinta); color: #fff; }
+.copiar.ok { background: var(--tinta); color: #fff; }
+.navegar { display: flex; align-items: center; gap: 10px; margin-top: 40px; font-size: 13px; color: var(--suave); }
+.navegar button { border: 1px solid var(--linha); background: #fff; border-radius: 8px; padding: 8px 12px; font: inherit; cursor: pointer; }
+.navegar button:hover:not(:disabled) { border-color: var(--tinta); }
+.navegar button:disabled { opacity: .35; cursor: default; }
+.fechar { float: right; border: 0; background: none; font-size: 26px; line-height: 1; cursor: pointer; color: var(--suave); padding: 0 4px; }
+.fechar:hover { color: var(--tinta); }
+.lista-vagas { list-style: none; padding: 0; margin: 0; }
+.lista-vagas li button { width: 100%; text-align: left; display: flex; justify-content: space-between; gap: 12px; padding: 14px 4px;
+  border: 0; border-bottom: 1px solid var(--linha); background: none; font: inherit; font-size: 15px; cursor: pointer; }
+.lista-vagas li button:hover { background: #fafafa; }
+.lista-vagas li button span { color: var(--suave); font-size: 13px; }
+
+@media (max-width: 760px) {
+  .topo { flex-wrap: wrap; gap: 10px; padding: 10px 12px; }
+  .busca { flex-basis: 100%; order: 3; }
+  .palco { flex-direction: column; }
+  .mapa-caixa { width: 100% !important; height: 100%; transition: height var(--tempo) cubic-bezier(.65,0,.35,1); }
+  body.com-vaga .mapa-caixa { height: 50%; }
+  .painel { border-left: 0; border-top: 1px solid var(--linha); flex: 0 0 auto; height: 0; }
+  body.com-vaga .painel { height: 50%; }
+  .painel-miolo { padding: 24px 18px; }
+  .painel h2 { font-size: 26px; margin-bottom: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { :root { --tempo: 0s; } }
+.painel .empresa { font-size: 16px; font-weight: 600; margin: -20px 0 6px; }
+.painel .area-vaga { font-size: 13px; color: var(--suave); margin: 0 0 28px; }
+.link-original { font-size: 17px !important; }
+.fonte-vaga { font-size: 12px; color: var(--suave); margin-top: 10px; }
+.lista-vagas li button span { text-align: right; }
+.pin-cidade.extra { transform: scale(.78); }
+.pin-cidade.extra:hover { transform: scale(.9); }
+.pin-cidade.extra .nome { display: none; }
+#mapa.nomes-extras .pin-cidade.extra .nome, .pin-cidade.extra:hover .nome { display: block; }

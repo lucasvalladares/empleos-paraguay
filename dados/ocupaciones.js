@@ -113,4 +113,5 @@ window.OCUPACIONES = [
 "Técnico/a en refrigeración",
 "Vendedor/a",
 "Veterinario/a"
+,"Otras ocupaciones"
 ];

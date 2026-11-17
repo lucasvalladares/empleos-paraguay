@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Empleos Paraguay · PRUEBA</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topo">
+  <div class="marca">Empleos <b>Paraguay</b></div>
+  <div class="busca" id="busca">
+    <div class="campo" id="campo">
+      <span class="chips" id="chips"></span>
+      <input id="entrada" type="text" autocomplete="off" placeholder="Buscá tu ocupación: vendedor, cocinero, chofer…"
+             role="combobox" aria-expanded="false" aria-controls="lista" aria-autocomplete="list">
+      <button id="limpar" class="limpar" type="button" hidden>Borrar búsqueda</button>
+      <button id="abrir" class="abrir" type="button" aria-label="Ver todas las ocupaciones">▾</button>
+    </div>
+    <ul id="lista" class="lista" role="listbox" aria-multiselectable="true" hidden></ul>
+    <div class="resumo" id="resumo"></div>
+  </div>
+  <div class="aviso-teste" id="aviso-teste" hidden>Vacantes de prueba (inventadas)</div>
+</header>
+
+<main class="palco">
+  <section class="mapa-caixa" id="mapa-caixa">
+    <div id="mapa" aria-label="Mapa de vacantes de Paraguay"></div>
+    <button class="voltar-mapa" id="voltar-mapa" type="button" hidden>⤢ Mapa completo</button>
+    <button class="canto canto-remoto" id="canto-remoto" type="button"></button>
+    <button class="canto canto-sem" id="canto-sem" type="button"></button>
+  </section>
+  <aside class="painel" id="painel" aria-live="polite"></aside>
+</main>
+
+<script src="vendor/leaflet.js"></script>
+<script src="dados/mapa-paraguai.js"></script>
+<script src="dados/ocupaciones.js"></script>
+<script src="teste/vagas-teste.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
