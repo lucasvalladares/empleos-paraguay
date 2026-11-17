@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Empleos Paraguay</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<style>
+:root { --tinta: #111; --suave: #6b6b6b; --linha: #e6e6e6; --destaque: #E4572E; --fundo: #fff; --tempo: .6s; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--fundo); color: var(--tinta);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+body { display: flex; flex-direction: column; }
+
+/* ---------- topo: busca ---------- */
+.topo { display: flex; align-items: center; gap: 20px; padding: 14px 20px; border-bottom: 1px solid var(--linha); position: relative; z-index: 1000; }
+.marca { font-size: 18px; white-space: nowrap; letter-spacing: -.01em; }
+.busca { position: relative; flex: 1; max-width: 720px; }
+.campo { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-height: 44px; padding: 5px 6px 5px 12px;
+  border: 1px solid var(--tinta); border-radius: 10px; background: #fff; cursor: text; }
+.campo:focus-within { box-shadow: 0 0 0 3px rgba(17,17,17,.08); }
+.chips { display: contents; }
+.chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 4px 4px 10px; border-radius: 999px; background: var(--tinta);
+  color: #fff; font-size: 13px; white-space: nowrap; }
+.chip button { border: 0; background: none; color: #fff; cursor: pointer; font-size: 15px; line-height: 1; padding: 0 4px; opacity: .8; }
+.chip button:hover { opacity: 1; }
+#entrada { flex: 1; min-width: 180px; border: 0; outline: 0; font: inherit; font-size: 15px; padding: 6px 0; background: none; }
+.limpar, .abrir { border: 0; background: none; font: inherit; cursor: pointer; color: var(--suave); padding: 6px 8px; border-radius: 6px; }
+.limpar { font-size: 13px; text-decoration: underline; }
+.limpar:hover, .abrir:hover { color: var(--tinta); background: #f4f4f4; }
+.abrir { font-size: 14px; }
+.lista { position: absolute; left: 0; right: 0; top: calc(100% + 6px); margin: 0; padding: 6px; list-style: none; max-height: 360px; overflow: auto;
+  background: #fff; border: 1px solid var(--tinta); border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+.lista li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+.lista li.ativo { background: #f2f2f2; }
+.lista li .caixa { width: 16px; height: 16px; border: 1.5px solid var(--tinta); border-radius: 4px; flex: none; display: grid; place-items: center; }
+.lista li[aria-selected="true"] .caixa { background: var(--tinta); }
+.lista li[aria-selected="true"] .caixa::after { content: ""; width: 8px; height: 4px; border: 2px solid #fff; border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); }
+.lista li .n { margin-left: auto; color: var(--suave); font-size: 12px; }
+.lista li.zero { color: #9a9a9a; }
+.lista .vazio, .lista .dica { padding: 10px; color: var(--suave); font-size: 13px; cursor: default; }
+.resumo { font-size: 12px; color: var(--suave); margin-top: 6px; min-height: 15px; }
+.aviso-teste { font-size: 12px; padding: 5px 10px; border: 1px dashed var(--destaque); color: var(--destaque); border-radius: 999px; white-space: nowrap; }
+
+/* ---------- palco: mapa + painel ---------- */
+.palco { flex: 1; display: flex; min-height: 0; position: relative; }
+.mapa-caixa { position: relative; width: 100%; flex: none; transition: width var(--tempo) cubic-bezier(.65,0,.35,1); }
+.painel { flex: 1; min-width: 0; overflow: auto; opacity: 0; transform: translateX(40px);
+  transition: opacity var(--tempo), transform var(--tempo) cubic-bezier(.65,0,.35,1); border-left: 1px solid var(--linha); }
+body.com-vaga .mapa-caixa { width: 32%; }
+body.com-vaga .painel { opacity: 1; transform: none; }
+#mapa { position: absolute; inset: 0; background: var(--fundo); }
+.leaflet-container { background: var(--fundo); font: inherit; }
+.leaflet-control-attribution { font-size: 10px; background: rgba(255,255,255,.8) !important; }
+
+/* pins */
+.icone { background: none; border: 0; }
+.pin { position: relative; width: 100%; height: 100%; cursor: pointer; transition: transform .15s; transform-origin: 50% 100%; }
+.pin:hover { transform: scale(1.12); }
+.pin svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+.pin-cidade .qtd { position: absolute; top: 8px; left: 0; right: 0; text-align: center; color: #fff; font-size: 12px; font-weight: 700; }
+.pin-cidade .nome { position: absolute; left: calc(100% + 4px); top: 7px; white-space: nowrap; font-size: 13px; font-weight: 600;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff; pointer-events: none; }
+.pin-cidade.vazia { opacity: .3; }
+.pin-vaga.sel { transform: scale(1.3); }
+.pin-vaga.sel path { fill: var(--tinta); }
+.rotulo-cidade { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--suave); white-space: nowrap;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff; pointer-events: none; }
+
+/* cantos: remotas (esquerda) e sem cidade (direita) */
+.canto { position: absolute; bottom: 14px; z-index: 600; display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px;
+  border: 1px solid var(--tinta); background: #fff; font: inherit; font-size: 13px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.canto:hover { background: #f6f6f6; }
+.canto b { font-size: 15px; }
+.canto.vazio { opacity: .35; }
+.canto-remoto { left: 14px; }
+.canto-sem { right: 14px; }
+.canto svg { width: 18px; height: 24px; flex: none; }
+.voltar-mapa { position: absolute; top: 12px; left: 12px; z-index: 700; border: 1px solid var(--tinta); background: #fff; border-radius: 8px;
+  padding: 7px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.voltar-mapa:hover { background: var(--tinta); color: #fff; }
+body.com-vaga .leaflet-control-zoom { display: none; }
+body.com-vaga .canto { font-size: 12px; padding: 6px 9px; }
+
+/* painel da vaga */
+.painel-miolo { max-width: 620px; padding: 40px 48px; }
+.painel .local { font-size: 13px; color: var(--suave); text-transform: uppercase; letter-spacing: .05em; }
+.painel h2 { font-size: 34px; line-height: 1.1; margin: 8px 0 32px; letter-spacing: -.02em; }
+.painel .instr { font-size: 14px; color: var(--suave); margin: 0 0 8px; }
+.email-linha { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 16px; border: 1px solid var(--tinta); border-radius: 10px; }
+.email-linha a { color: var(--tinta); font-size: 18px; font-weight: 600; word-break: break-all; flex: 1; }
+.copiar { border: 1px solid var(--tinta); background: #fff; border-radius: 8px; padding: 8px 14px; font: inherit; font-size: 13px; cursor: pointer; white-space: nowrap; }
+.copiar:hover { background: var(--tinta); color: #fff; }
+.copiar.ok { background: var(--tinta); color: #fff; }
+.navegar { display: flex; align-items: center; gap: 10px; margin-top: 40px; font-size: 13px; color: var(--suave); }
+.navegar button { border: 1px solid var(--linha); background: #fff; border-radius: 8px; padding: 8px 12px; font: inherit; cursor: pointer; }
+.navegar button:hover:not(:disabled) { border-color: var(--tinta); }
+.navegar button:disabled { opacity: .35; cursor: default; }
+.fechar { float: right; border: 0; background: none; font-size: 26px; line-height: 1; cursor: pointer; color: var(--suave); padding: 0 4px; }
+.fechar:hover { color: var(--tinta); }
+.lista-vagas { list-style: none; padding: 0; margin: 0; }
+.lista-vagas li button { width: 100%; text-align: left; display: flex; justify-content: space-between; gap: 12px; padding: 14px 4px;
+  border: 0; border-bottom: 1px solid var(--linha); background: none; font: inherit; font-size: 15px; cursor: pointer; }
+.lista-vagas li button:hover { background: #fafafa; }
+.lista-vagas li button span { color: var(--suave); font-size: 13px; }
+
+@media (max-width: 760px) {
+  .topo { flex-wrap: wrap; gap: 10px; padding: 10px 12px; }
+  .busca { flex-basis: 100%; order: 3; }
+  .palco { flex-direction: column; }
+  .mapa-caixa { width: 100% !important; height: 100%; transition: height var(--tempo) cubic-bezier(.65,0,.35,1); }
+  body.com-vaga .mapa-caixa { height: 34%; }
+  .painel { border-left: 0; border-top: 1px solid var(--linha); flex: 0 0 auto; height: 0; }
+  body.com-vaga .painel { height: 66%; }
+  .painel-miolo { padding: 24px 18px; }
+  .painel h2 { font-size: 26px; margin-bottom: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { :root { --tempo: 0s; } }
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="marca">Empleos <b>Paraguay</b></div>
+  <div class="busca" id="busca">
+    <div class="campo" id="campo">
+      <span class="chips" id="chips"></span>
+      <input id="entrada" type="text" autocomplete="off" placeholder="Buscá tu ocupación: vendedor, cocinero, chofer…"
+             role="combobox" aria-expanded="false" aria-controls="lista" aria-autocomplete="list">
+      <button id="limpar" class="limpar" type="button" hidden>Borrar búsqueda</button>
+      <button id="abrir" class="abrir" type="button" aria-label="Ver todas las ocupaciones">▾</button>
+    </div>
+    <ul id="lista" class="lista" role="listbox" aria-multiselectable="true" hidden></ul>
+    <div class="resumo" id="resumo"></div>
+  </div>
+  <div class="aviso-teste" id="aviso-teste" hidden>Vacantes de prueba (inventadas)</div>
+</header>
+
+<main class="palco">
+  <section class="mapa-caixa" id="mapa-caixa">
+    <div id="mapa" aria-label="Mapa de vacantes de Paraguay"></div>
+    <button class="voltar-mapa" id="voltar-mapa" type="button" hidden>⤢ Mapa completo</button>
+    <button class="canto canto-remoto" id="canto-remoto" type="button"></button>
+    <button class="canto canto-sem" id="canto-sem" type="button"></button>
+  </section>
+  <aside class="painel" id="painel" aria-live="polite"></aside>
+</main>
+
+<script src="vendor/leaflet.js"></script>
+<script src="dados/mapa-paraguai.js"></script>
+<script src="dados/ocupaciones.js"></script>
+<script src="teste/vagas-teste.js"></script>
+<script>
+// ============================================================
+// Dados
+// ============================================================
+// As 5 cidades principais espalhadas pelo país (San Lorenzo, Luque e Capiatá são maiores que algumas
+// destas, mas ficam coladas em Asunción: no mapa do país os pins ficariam um em cima do outro).
+const CIDADES = [
+  {id: 'asuncion',             nome: 'Asunción',             lat: -25.300, lng: -57.600},
+  {id: 'ciudad-del-este',      nome: 'Ciudad del Este',      lat: -25.515, lng: -54.640},
+  {id: 'encarnacion',          nome: 'Encarnación',          lat: -27.340, lng: -55.880},
+  {id: 'pedro-juan-caballero', nome: 'Pedro Juan Caballero', lat: -22.552, lng: -55.748},
+  {id: 'concepcion',           nome: 'Concepción',           lat: -23.405, lng: -57.425},
+];
+const VAGAS = window.VAGAS || [];
+const OCUPACOES = window.OCUPACIONES || [];
+const cidadeDe = id => CIDADES.find(c => c.id === id);
+if (window.VAGAS_TESTE) document.getElementById('aviso-teste').hidden = false;
+
+const Z_VAGAS = 13;        // zoom em que os pins das vagas ficam a DIST px uns dos outros
+const DIST = 46;           // distância mínima entre pins (px) nesse zoom: dá para clicar sem errar
+const Z_MOSTRAR = 12.5;    // a partir deste zoom aparecem as vagas; abaixo, os pins das cidades
+
+const selecionadas = new Set();   // ocupações escolhidas na busca
+let atual = null;                 // vaga aberta no painel
+let grupoAberto = null;           // lista aberta pelos cantos ('remoto' | 'sem')
+
+const sem = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const passa = v => !selecionadas.size || selecionadas.has(v.ocupacion);
+const grupoDe = v => v.remoto ? 'remoto' : (v.ciudad || 'sem');
+const NOME_GRUPO = {remoto: 'Remoto', sem: 'Sin ciudad definida'};
+const nomeGrupo = g => NOME_GRUPO[g] || cidadeDe(g).nome;
+
+function el(tag, attrs, pai, texto) {
+  const e = document.createElement(tag);
+  for (const k in attrs || {}) if (attrs[k] != null) e.setAttribute(k, attrs[k]);
+  if (texto != null) e.textContent = texto;
+  if (pai) pai.appendChild(e);
+  return e;
+}
+function semente(txt) {   // número aleatório "fixo" por cidade: os pins não mudam de lugar a cada visita
+  let h = 2166136261;
+  for (const c of txt) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  return () => { h += 0x6D2B79F5; let t = h; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+const PIN = (cor, furo = true) => '<svg viewBox="0 0 24 32" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="' + cor + '"/>' +
+  (furo ? '<circle cx="12" cy="12" r="4.2" fill="#fff"/>' : '') + '</svg>';
+
+// ============================================================
+// Mapa
+// ============================================================
+const mapa = L.map('mapa', {zoomControl: false, zoomSnap: 0.25, zoomDelta: 0.5, wheelPxPerZoomLevel: 90, attributionControl: true});
+L.control.zoom({position: 'topright'}).addTo(mapa);
+mapa.attributionControl.setPrefix(false).addAttribution('Límites: <a href="https://www.geoboundaries.org" target="_blank" rel="noopener">geoBoundaries</a>');
+L.geoJSON(GEO.departamentos, {style: {color: '#000', weight: 0.6, opacity: 0.16, fill: false}, interactive: false}).addTo(mapa);
+const pais = L.geoJSON(GEO.pais, {style: {color: '#000', weight: 1.1, opacity: 1, fill: false}, interactive: false}).addTo(mapa);
+const limites = pais.getBounds();
+mapa.setMaxBounds(limites.pad(0.8));
+
+// posição de cada vaga: espalhada ao acaso perto do centro da cidade, sempre a pelo menos DIST px das outras
+function espalhar(cidade, vagas) {
+  const rnd = semente(cidade.id), c = mapa.project([cidade.lat, cidade.lng], Z_VAGAS);
+  let raio = DIST * (0.6 + 0.75 * Math.sqrt(vagas.length)), pts;
+  for (;;) {
+    pts = [];
+    for (let t = 0; pts.length < vagas.length && t < 6000; t++) {
+      const a = rnd() * 2 * Math.PI, r = raio * Math.sqrt(rnd());
+      const p = {x: c.x + r * Math.cos(a), y: c.y + r * Math.sin(a)};
+      if (pts.every(q => (q.x - p.x) ** 2 + (q.y - p.y) ** 2 >= DIST * DIST)) pts.push(p);
+    }
+    if (pts.length === vagas.length) break;
+    raio *= 1.12;   // não coube: aumenta um pouco a zona
+  }
+  vagas.forEach((v, i) => { v.pos = mapa.unproject(L.point(pts[i].x, pts[i].y), Z_VAGAS); });
+}
+
+const camadaCidades = L.layerGroup().addTo(mapa);
+const camadaVagas = L.layerGroup();
+const marcadoresVaga = new Map();
+
+function iconeCidade(c, n) {
+  return L.divIcon({className: 'icone', iconSize: [30, 40], iconAnchor: [15, 40],
+    html: '<div class="pin pin-cidade' + (n ? '' : ' vazia') + '">' + PIN('#111', false) + '<span class="qtd">' + n + '</span><span class="nome">' + c.nome + '</span></div>'});
+}
+const iconeVaga = sel => L.divIcon({className: 'icone', iconSize: [22, 30], iconAnchor: [11, 30],
+  html: '<div class="pin pin-vaga' + (sel ? ' sel' : '') + '">' + PIN('#E4572E') + '</div>'});
+
+CIDADES.forEach(c => {
+  const doLugar = VAGAS.filter(v => v.ciudad === c.id && !v.remoto);
+  espalhar(c, doLugar);
+  c.marcador = L.marker([c.lat, c.lng], {icon: iconeCidade(c, doLugar.length), riseOnHover: true, keyboard: true, title: c.nome})
+    .on('click', () => irParaCidade(c)).addTo(camadaCidades);
+  // nome da cidade acima das vagas, quando o mapa está aproximado
+  const topo = doLugar.length ? Math.max(...doLugar.map(v => v.pos.lat)) : c.lat;
+  L.marker([topo, c.lng], {interactive: false, keyboard: false,
+    icon: L.divIcon({className: 'icone', html: '<div class="rotulo-cidade">' + c.nome + '</div>', iconSize: [200, 20], iconAnchor: [100, 44]})}).addTo(camadaVagas);
+  doLugar.forEach(v => {
+    const m = L.marker(v.pos, {icon: iconeVaga(false), riseOnHover: true, keyboard: true, title: v.ocupacion})
+      .on('click', () => selecionar(v));
+    marcadoresVaga.set(v.id, m);
+  });
+});
+
+function irParaCidade(c) {
+  const pontos = VAGAS.filter(v => v.ciudad === c.id && passa(v) && v.pos).map(v => v.pos);
+  if (pontos.length) mapa.flyToBounds(L.latLngBounds(pontos), {padding: [70, 70], maxZoom: 15, duration: 1.2});
+  else mapa.flyTo([c.lat, c.lng], Z_VAGAS, {duration: 1.2});
+}
+
+function desenharPins() {
+  const perto = mapa.getZoom() >= Z_MOSTRAR;
+  if (perto && !mapa.hasLayer(camadaVagas)) { mapa.addLayer(camadaVagas); mapa.removeLayer(camadaCidades); }
+  if (!perto && mapa.hasLayer(camadaVagas)) { mapa.removeLayer(camadaVagas); mapa.addLayer(camadaCidades); }
+  CIDADES.forEach(c => c.marcador.setIcon(iconeCidade(c, VAGAS.filter(v => v.ciudad === c.id && !v.remoto && passa(v)).length)));
+  VAGAS.forEach(v => {
+    const m = marcadoresVaga.get(v.id);
+    if (!m) return;
+    const mostrar = passa(v);
+    if (mostrar && !camadaVagas.hasLayer(m)) camadaVagas.addLayer(m);
+    if (!mostrar && camadaVagas.hasLayer(m)) camadaVagas.removeLayer(m);
+    m.setIcon(iconeVaga(atual === v));
+    m.setZIndexOffset(atual === v ? 1000 : 0);
+  });
+  desenharCantos();
+}
+mapa.on('zoomend', desenharPins);
+
+// cantos: vagas remotas (esquerda) e sem cidade (direita)
+const cantoRemoto = document.getElementById('canto-remoto'), cantoSem = document.getElementById('canto-sem');
+function desenharCantos() {
+  const nR = VAGAS.filter(v => v.remoto && passa(v)).length;
+  const nS = VAGAS.filter(v => !v.remoto && !v.ciudad && passa(v)).length;
+  cantoRemoto.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#111" stroke-width="1.5"/>' +
+    '<path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20" fill="none" stroke="#111" stroke-width="1.5"/></svg><span>Remoto</span><b>' + nR + '</b>';
+  cantoSem.innerHTML = PIN('#E4572E') + '<span>Sin ciudad</span><b>' + nS + '</b>';
+  cantoRemoto.classList.toggle('vazio', !nR);
+  cantoSem.classList.toggle('vazio', !nS);
+}
+cantoRemoto.onclick = () => abrirGrupo('remoto');
+cantoSem.onclick = () => abrirGrupo('sem');
+
+// ============================================================
+// Painel (detalhe da vaga) e animação do mapa
+// ============================================================
+const painel = document.getElementById('painel');
+const voltar = document.getElementById('voltar-mapa');
+const caixaMapa = document.getElementById('mapa-caixa');
+// Enquanto o mapa encolhe/cresce, o ponto "seguir" fica no centro: o mapa desliza junto com a animação.
+let seguir = null;
+new ResizeObserver(() => { mapa.invalidateSize({pan: false}); if (seguir) mapa.panTo(seguir, {animate: false}); }).observe(caixaMapa);
+function esperarAnimacao(depois) {
+  let feito = false;
+  const fim = () => { if (feito) return; feito = true; caixaMapa.removeEventListener('transitionend', aoTerminar);
+    seguir = null; mapa.invalidateSize({pan: false}); if (depois) depois(); };
+  const aoTerminar = ev => { if (ev.target === caixaMapa) fim(); };
+  caixaMapa.addEventListener('transitionend', aoTerminar);
+  setTimeout(fim, 900);   // garantia, se o navegador não avisar o fim da animação
+}
+function abrirPainel(alvo, depois) {
+  if (document.body.classList.contains('com-vaga')) { if (depois) depois(); return; }
+  seguir = alvo || mapa.getCenter();
+  document.body.classList.add('com-vaga');
+  voltar.hidden = false;
+  esperarAnimacao(depois);
+}
+function fecharPainel() {
+  atual = null; grupoAberto = null;
+  seguir = mapa.getCenter();
+  document.body.classList.remove('com-vaga');
+  voltar.hidden = true;
+  desenharPins();
+  esperarAnimacao();
+}
+voltar.onclick = fecharPainel;
+
+function visiveisDoGrupo(g) { return VAGAS.filter(v => grupoDe(v) === g && passa(v)); }
+
+function selecionar(v) {
+  atual = v; grupoAberto = null;
+  desenharPins();
+  desenharVaga();
+  if (!v.pos) { abrirPainel(null, () => mapa.flyToBounds(limites, {paddingTopLeft: [20, 50], paddingBottomRight: [120, 60], duration: 0.8})); return; }
+  const perto = mapa.getZoom() >= Z_MOSTRAR && mapa.getBounds().contains(v.pos);
+  abrirPainel(perto ? v.pos : null, () => {
+    if (perto) mapa.panTo(v.pos, {duration: 0.5});
+    else mapa.flyTo(v.pos, Math.max(mapa.getZoom(), 14), {duration: 1});
+  });
+}
+
+function desenharVaga() {
+  const v = atual, lista = visiveisDoGrupo(grupoDe(v)), i = lista.indexOf(v);
+  painel.textContent = '';
+  const mi = el('div', {class: 'painel-miolo'}, painel);
+  const x = el('button', {class: 'fechar', type: 'button', 'aria-label': 'Cerrar'}, mi, '×');
+  x.onclick = fecharPainel;
+  el('div', {class: 'local'}, mi, nomeGrupo(grupoDe(v)));
+  el('h2', null, mi, v.ocupacion);
+  el('p', {class: 'instr'}, mi, 'Enviá tu CV a:');
+  const linha = el('div', {class: 'email-linha'}, mi);
+  el('a', {href: 'mailto:' + v.email + '?subject=' + encodeURIComponent('Postulación: ' + v.ocupacion)}, linha, v.email);
+  const cp = el('button', {class: 'copiar', type: 'button'}, linha, 'Copiar');
+  cp.onclick = () => copiar(v.email, cp);
+  const nav = el('div', {class: 'navegar'}, mi);
+  const ant = el('button', {type: 'button'}, nav, '← Anterior');
+  el('span', null, nav, (i + 1) + ' de ' + lista.length + ' en ' + nomeGrupo(grupoDe(v)));
+  const prox = el('button', {type: 'button'}, nav, 'Siguiente →');
+  ant.disabled = i <= 0; prox.disabled = i < 0 || i >= lista.length - 1;
+  ant.onclick = () => selecionar(lista[i - 1]);
+  prox.onclick = () => selecionar(lista[i + 1]);
+}
+
+function abrirGrupo(g) {
+  const lista = visiveisDoGrupo(g);
+  if (!lista.length) return;
+  atual = null; grupoAberto = g;
+  desenharPins();
+  painel.textContent = '';
+  const mi = el('div', {class: 'painel-miolo'}, painel);
+  const x = el('button', {class: 'fechar', type: 'button', 'aria-label': 'Cerrar'}, mi, '×');
+  x.onclick = fecharPainel;
+  el('div', {class: 'local'}, mi, lista.length + (lista.length === 1 ? ' vacante' : ' vacantes'));
+  el('h2', null, mi, g === 'remoto' ? 'Trabajo remoto' : 'Sin ciudad definida');
+  const ul = el('ul', {class: 'lista-vagas'}, mi);
+  lista.forEach(v => { const b = el('button', {type: 'button'}, el('li', null, ul), v.ocupacion); el('span', null, b, 'Ver →'); b.onclick = () => selecionar(v); });
+  abrirPainel(null, () => mapa.flyToBounds(limites, {paddingTopLeft: [20, 50], paddingBottomRight: [120, 60], duration: 0.8}));
+}
+
+function copiar(texto, botao) {
+  const feito = () => { botao.textContent = '¡Copiado!'; botao.classList.add('ok'); setTimeout(() => { botao.textContent = 'Copiar'; botao.classList.remove('ok'); }, 1600); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(feito, () => copiarAntigo(texto, feito));
+  else copiarAntigo(texto, feito);
+}
+function copiarAntigo(texto, feito) {   // navegadores sem a API (ou página aberta direto do arquivo)
+  const t = el('textarea', {style: 'position:fixed;opacity:0'}, document.body); t.value = texto; t.select();
+  try { document.execCommand('copy'); feito(); } finally { t.remove(); }
+}
+
+// ============================================================
+// Busca: lista de ocupações (várias escolhas) + filtro a partir da 3ª letra
+// ============================================================
+const entrada = document.getElementById('entrada'), listaEl = document.getElementById('lista');
+const chipsEl = document.getElementById('chips'), limpar = document.getElementById('limpar'), resumo = document.getElementById('resumo');
+const contagem = {};
+VAGAS.forEach(v => { contagem[v.ocupacion] = (contagem[v.ocupacion] || 0) + 1; });
+let ativo = 0, itensVisiveis = [];
+
+function desenharLista() {
+  const txt = sem(entrada.value.trim());
+  itensVisiveis = txt.length >= 3 ? OCUPACOES.filter(o => sem(o).includes(txt)) : OCUPACOES.slice();
+  // ocupações com vagas primeiro, depois as demais (em ordem alfabética)
+  itensVisiveis.sort((a, b) => (!contagem[a] - !contagem[b]) || a.localeCompare(b, 'es'));
+  ativo = Math.min(ativo, Math.max(0, itensVisiveis.length - 1));
+  listaEl.textContent = '';
+  if (txt.length > 0 && txt.length < 3) el('li', {class: 'dica'}, listaEl, 'Escribí al menos 3 letras para filtrar');
+  if (!itensVisiveis.length) el('li', {class: 'vazio'}, listaEl, 'Ninguna ocupación con "' + entrada.value.trim() + '"');
+  itensVisiveis.forEach((o, i) => {
+    const li = el('li', {role: 'option', id: 'op-' + i, 'aria-selected': String(selecionadas.has(o)), class: (i === ativo ? 'ativo ' : '') + (contagem[o] ? '' : 'zero')}, listaEl);
+    el('span', {class: 'caixa'}, li);
+    el('span', null, li, o);
+    el('span', {class: 'n'}, li, contagem[o] ? contagem[o] + (contagem[o] === 1 ? ' vacante' : ' vacantes') : 'sin vacantes');
+    li.onmousedown = ev => ev.preventDefault();   // não tira o foco do campo
+    li.onclick = () => { ativo = i; alternar(o); };
+  });
+  entrada.setAttribute('aria-activedescendant', itensVisiveis.length ? 'op-' + ativo : '');
+}
+function abrirLista() { listaEl.hidden = false; entrada.setAttribute('aria-expanded', 'true'); desenharLista(); }
+function fecharLista() { listaEl.hidden = true; entrada.setAttribute('aria-expanded', 'false'); }
+
+function alternar(o) {
+  if (selecionadas.has(o)) selecionadas.delete(o); else selecionadas.add(o);
+  aplicarFiltro();
+  desenharLista();
+}
+function desenharChips() {
+  chipsEl.textContent = '';
+  selecionadas.forEach(o => {
+    const c = el('span', {class: 'chip'}, chipsEl, o);
+    const x = el('button', {type: 'button', 'aria-label': 'Quitar ' + o}, c, '×');
+    x.onclick = ev => { ev.stopPropagation(); selecionadas.delete(o); aplicarFiltro(); if (!listaEl.hidden) desenharLista(); };
+  });
+  limpar.hidden = !selecionadas.size && !entrada.value;
+  entrada.placeholder = selecionadas.size ? 'Agregar otra ocupación…' : 'Buscá tu ocupación: vendedor, cocinero, chofer…';
+}
+function aplicarFiltro() {
+  desenharChips();
+  const n = VAGAS.filter(passa).length;
+  resumo.textContent = selecionadas.size ? n + (n === 1 ? ' vacante' : ' vacantes') + ' en ' + selecionadas.size +
+    (selecionadas.size === 1 ? ' ocupación' : ' ocupaciones') : VAGAS.length + ' vacantes en todo el país';
+  if (atual && !passa(atual)) fecharPainel();
+  else if (atual) desenharVaga();
+  else if (grupoAberto) { if (visiveisDoGrupo(grupoAberto).length) abrirGrupo(grupoAberto); else fecharPainel(); }
+  desenharPins();
+}
+function zerar() {
+  selecionadas.clear(); entrada.value = ''; ativo = 0;
+  aplicarFiltro();
+  if (!listaEl.hidden) desenharLista();
+}
+
+entrada.addEventListener('focus', abrirLista);
+entrada.addEventListener('input', () => { ativo = 0; abrirLista(); limpar.hidden = !selecionadas.size && !entrada.value; });
+entrada.addEventListener('keydown', ev => {
+  if (ev.key === 'ArrowDown') { ev.preventDefault(); if (listaEl.hidden) abrirLista(); ativo = Math.min(ativo + 1, itensVisiveis.length - 1); desenharLista(); rolarAtivo(); }
+  else if (ev.key === 'ArrowUp') { ev.preventDefault(); ativo = Math.max(ativo - 1, 0); desenharLista(); rolarAtivo(); }
+  else if (ev.key === 'Enter') { ev.preventDefault(); if (itensVisiveis[ativo]) alternar(itensVisiveis[ativo]); }
+  else if (ev.key === 'Escape') { fecharLista(); entrada.blur(); }
+  else if (ev.key === 'Backspace' && !entrada.value && selecionadas.size) { selecionadas.delete([...selecionadas].pop()); aplicarFiltro(); desenharLista(); }
+});
+function rolarAtivo() { const a = listaEl.querySelector('.ativo'); if (a) a.scrollIntoView({block: 'nearest'}); }
+document.getElementById('abrir').onclick = () => { if (listaEl.hidden) { entrada.focus(); abrirLista(); } else fecharLista(); };
+document.getElementById('campo').addEventListener('click', ev => { if (ev.target.id === 'campo') entrada.focus(); });
+limpar.onclick = zerar;
+document.addEventListener('mousedown', ev => { if (!document.getElementById('busca').contains(ev.target)) fecharLista(); });
+
+// ============================================================
+// Início: o mapa aparece se afastando até mostrar o país inteiro
+// ============================================================
+const vistaPais = mapa.getBoundsZoom(limites, false, L.point(40, 40));
+mapa.setMinZoom(Math.max(3, Math.floor(vistaPais) - 1));
+mapa.setView(limites.getCenter(), vistaPais + 2.5, {animate: false});
+aplicarFiltro();
+requestAnimationFrame(() => setTimeout(() => mapa.flyToBounds(limites, {padding: [40, 40], duration: 1.8}), 150));
+</script>
+</body>
+</html>
