@@ -267,7 +267,7 @@ LUGARES = {
     "hohenau": ("Hohenau", -27.0789, -55.6478), "obligado": ("Obligado", -27.05, -55.6333), "bella vista": ("Bella Vista", -27.05, -55.5833),
     "cambyreta": ("Cambyretá", -27.3333, -55.75), "valenzuela": ("Valenzuela", -25.55, -56.97),
     "villa hayes": ("Villa Hayes", -25.0939, -57.5236), "villeta": ("Villeta", -25.5097, -57.5567),
-    "ypacarai": ("Ypacaraí", -25.4089, -57.2889), "ypane": ("Ypané", -25.45, -57.53), "fram": ("Fram", -26.9833, -56.0), "maria auxiliadora": ("María Auxiliadora", -26.5333, -55.25),
+    "ypacarai": ("Ypacaraí", -25.4089, -57.2889), "guarambare": ("Guarambaré", -25.4917, -57.4556), "ypane": ("Ypané", -25.45, -57.53), "fram": ("Fram", -26.9833, -56.0), "maria auxiliadora": ("María Auxiliadora", -26.5333, -55.25),
 }
 
 

@@ -1,7 +1,7 @@
-// VACANTES REALES coletadas por coletor_vagas.py em 17/11/2026 07:36 (não editar à mão).
+// VACANTES REALES coletadas por coletor_vagas.py em 18/11/2026 15:13 (não editar à mão).
 window.VAGAS_TESTE = false;
-window.COLETA = {"geradoEm": "17/11/2026 07:36", "fontes": [{"fuente": "Lever", "vagas": 25, "erro": null}, {"fuente": "Recruiterflow", "vagas": 13, "erro": null}, {"fuente": "Workday (Infobip)", "vagas": 8, "erro": null}, {"fuente": "Nestlé", "vagas": 21, "erro": null}, {"fuente": "ABC Empleos", "vagas": 63, "erro": null}, {"fuente": "Jobs Paraguay", "vagas": 81, "erro": null}]};
-window.CIDADES_EXTRA = [{"id": "caaguazu", "nome": "Caaguazú", "lat": -25.4667, "lng": -56.0167}, {"id": "santa-rita", "nome": "Santa Rita", "lat": -25.7917, "lng": -55.0861}, {"id": "valenzuela", "nome": "Valenzuela", "lat": -25.55, "lng": -56.97}];
+window.COLETA = {"geradoEm": "18/11/2026 15:13", "fontes": [{"fuente": "Lever", "vagas": 25, "erro": null}, {"fuente": "Recruiterflow", "vagas": 13, "erro": null}, {"fuente": "Workday (Infobip)", "vagas": 9, "erro": null}, {"fuente": "Nestlé", "vagas": 19, "erro": null}, {"fuente": "ABC Empleos", "vagas": 70, "erro": null}, {"fuente": "Jobs Paraguay", "vagas": 81, "erro": null}]};
+window.CIDADES_EXTRA = [{"id": "santani", "nome": "Santaní", "lat": -24.655, "lng": -56.4361}, {"id": "caaguazu", "nome": "Caaguazú", "lat": -25.4667, "lng": -56.0167}, {"id": "santa-rita", "nome": "Santa Rita", "lat": -25.7917, "lng": -55.0861}, {"id": "valenzuela", "nome": "Valenzuela", "lat": -25.55, "lng": -56.97}];
 window.VAGAS = [
 {
 "id": 1,
@@ -246,14 +246,14 @@ window.VAGAS = [
 "ocupacion": "Abogado/a",
 "titulo": "Paralegal",
 "empresa": "South",
-"ciudad": "ciudad-del-este",
+"ciudad": null,
 "ciudadNombre": "Ciudad del Este",
-"remoto": false,
+"remoto": true,
 "link": "https://recruiterflow.com/south/jobs/1174",
 "fuente": "Recruiterflow",
 "publicado": "2026-10-27",
 "vence": null,
-"modalidad": null
+"modalidad": "Remote"
 },
 {
 "id": 19,
@@ -425,34 +425,20 @@ window.VAGAS = [
 },
 {
 "id": 31,
-"ocupacion": "Analista financiero/a",
-"titulo": "Asistente de Finanzas",
-"empresa": "Nestlé",
+"ocupacion": "Gestor/a de cobranzas",
+"titulo": "Collections Specialist",
+"empresa": "Infobip",
 "ciudad": "asuncion",
 "ciudadNombre": "Asunción",
 "remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-de-Finanzas-1749/1455222633/",
-"fuente": "SuccessFactors",
+"link": "https://infobip.wd3.myworkdayjobs.com/InfobipCareers/job/Asuncion-Paraguay/Collections-Specialist_JR105214",
+"fuente": "Workday",
 "publicado": null,
 "vence": null,
-"modalidad": null
+"modalidad": "Presencial"
 },
 {
 "id": 32,
-"ocupacion": "Auxiliar contable",
-"titulo": "Asistente Senior de Conciliaciones Bancarias",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-Senior-de-Conciliaciones-Bancarias-1749/1456209533/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 33,
 "ocupacion": "Recursos humanos",
 "titulo": "Analista de Reclutamiento y Selección",
 "empresa": "Nestlé",
@@ -466,14 +452,28 @@ window.VAGAS = [
 "modalidad": null
 },
 {
-"id": 34,
-"ocupacion": "Auxiliar contable",
-"titulo": "O2C Sr. Associate",
+"id": 33,
+"ocupacion": "Administrativo/a",
+"titulo": "Websites Sr Analyst",
 "empresa": "Nestlé",
 "ciudad": "asuncion",
 "ciudadNombre": "Asunción",
 "remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-O2C-Sr_-Associate-1749/1455296933/",
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Websites-Sr-Analyst-1749/1458078633/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 34,
+"ocupacion": "Marketing",
+"titulo": "Asistente de Marketing Digital",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-de-Marketing-Digital-1749/1458082533/",
 "fuente": "SuccessFactors",
 "publicado": null,
 "vence": null,
@@ -481,34 +481,6 @@ window.VAGAS = [
 },
 {
 "id": 35,
-"ocupacion": "Auxiliar contable",
-"titulo": "Analista de Cuentas por Cobrar",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Analista-de-Cuentas-por-Cobrar-1749/1455303933/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 36,
-"ocupacion": "Analista de créditos",
-"titulo": "Asistente de Créditos",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-de-Cr%C3%A9ditos-1749/1455343233/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 37,
 "ocupacion": "Auxiliar contable",
 "titulo": "O2C ASSOCIATE",
 "empresa": "Nestlé",
@@ -522,35 +494,35 @@ window.VAGAS = [
 "modalidad": null
 },
 {
+"id": 36,
+"ocupacion": "Auxiliar contable",
+"titulo": "Analista de Cuentas por Cobrar",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Analista-de-Cuentas-por-Cobrar-1749/1455303933/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 37,
+"ocupacion": "Auxiliar contable",
+"titulo": "O2C Sr. Associate",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-O2C-Sr_-Associate-1749/1455296933/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
 "id": 38,
-"ocupacion": "Auxiliar de logística",
-"titulo": "Analista de Compras",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Analista-de-Compras-1749/1455329333/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 39,
-"ocupacion": "Soporte técnico IT",
-"titulo": "Analista de Soporte a Decisiones",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Analista-de-Soporte-a-Decisiones-1749/1452311733/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 40,
 "ocupacion": "Analista de datos",
 "titulo": "Analista de Datos de Compras",
 "empresa": "Nestlé",
@@ -564,63 +536,21 @@ window.VAGAS = [
 "modalidad": null
 },
 {
-"id": 41,
-"ocupacion": "Marketing",
-"titulo": "Asistente de Marketing Digital - Temporal",
+"id": 39,
+"ocupacion": "Analista financiero/a",
+"titulo": "Asistente de Finanzas",
 "empresa": "Nestlé",
 "ciudad": "asuncion",
 "ciudadNombre": "Asunción",
 "remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-de-Marketing-Digital-Temporal-1749/1455339533/",
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-de-Finanzas-1749/1455222633/",
 "fuente": "SuccessFactors",
 "publicado": null,
 "vence": null,
 "modalidad": null
 },
 {
-"id": 42,
-"ocupacion": "Supervisor/a",
-"titulo": "Supervisor de Diseño Gráfico y Contenidos",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Supervisor-de-Dise%C3%B1o-Gr%C3%A1fico-y-Contenidos-1749/1454475533/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 43,
-"ocupacion": "Agente de call center",
-"titulo": "Analista de Operaciones de Contact Center",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Analista-de-Operaciones-de-Contact-Center-1749/1454923433/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 44,
-"ocupacion": "Auxiliar de logística",
-"titulo": "Asistente de Logística",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-de-Log%C3%ADstica-1749/1454446533/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 45,
+"id": 40,
 "ocupacion": "Marketing",
 "titulo": "Analista de Marketing Digital",
 "empresa": "Nestlé",
@@ -634,49 +564,7 @@ window.VAGAS = [
 "modalidad": null
 },
 {
-"id": 46,
-"ocupacion": "QA / Tester de software",
-"titulo": "Websites QA Analyst",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Websites-QA-Analyst-1749/1454701333/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 47,
-"ocupacion": "Project manager de TI",
-"titulo": "Websites Project Manager Analyst",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Websites-Project-Manager-Analyst-1749/1455981033/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 48,
-"ocupacion": "Auxiliar contable",
-"titulo": "Analista contable",
-"empresa": "Nestlé",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
-"remoto": false,
-"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Analista-contable-1749/1456841133/",
-"fuente": "SuccessFactors",
-"publicado": null,
-"vence": null,
-"modalidad": null
-},
-{
-"id": 49,
+"id": 41,
 "ocupacion": "Vendedor/a",
 "titulo": "Supervisor de Ventas Canal Supermercado",
 "empresa": "Nestlé",
@@ -690,7 +578,189 @@ window.VAGAS = [
 "modalidad": null
 },
 {
+"id": 42,
+"ocupacion": "Project manager de TI",
+"titulo": "Websites Project Manager Analyst",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Websites-Project-Manager-Analyst-1749/1455981033/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 43,
+"ocupacion": "Auxiliar contable",
+"titulo": "Asistente Senior de Conciliaciones Bancarias",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-Senior-de-Conciliaciones-Bancarias-1749/1456209533/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 44,
+"ocupacion": "Supervisor/a",
+"titulo": "Supervisor de Diseño Gráfico y Contenidos",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Supervisor-de-Dise%C3%B1o-Gr%C3%A1fico-y-Contenidos-1749/1454475533/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 45,
+"ocupacion": "Auxiliar de logística",
+"titulo": "Asistente de Logística",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-de-Log%C3%ADstica-1749/1454446533/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 46,
+"ocupacion": "Analista de créditos",
+"titulo": "Asistente de Créditos",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Asistente-de-Cr%C3%A9ditos-1749/1455343233/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 47,
+"ocupacion": "Soporte técnico IT",
+"titulo": "Analista de Soporte a Decisiones",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Analista-de-Soporte-a-Decisiones-1749/1452311733/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 48,
+"ocupacion": "QA / Tester de software",
+"titulo": "Websites QA Analyst",
+"empresa": "Nestlé",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobdetails.nestle.com/job/Asunci%C3%B3n-Websites-QA-Analyst-1749/1454701333/",
+"fuente": "SuccessFactors",
+"publicado": null,
+"vence": null,
+"modalidad": null
+},
+{
+"id": 49,
+"ocupacion": "Diseñador/a UX/UI",
+"titulo": "AUX. CONTABLE JR.",
+"empresa": "GRUPO LA ADMINISTRADORA SRL",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://empleos.abc.com.py/ofertas/aux-contable-jr-administracion-618",
+"fuente": "ABC Empleos",
+"publicado": "2026-11-18",
+"vence": "2026-11-30",
+"modalidad": "Presencial"
+},
+{
 "id": 50,
+"ocupacion": "Gerente",
+"titulo": "BRAND MANAGER",
+"empresa": "Inmobiliaria del Este",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://empleos.abc.com.py/ofertas/brand-manager-marketing-619",
+"fuente": "ABC Empleos",
+"publicado": "2026-11-18",
+"vence": "2026-12-20",
+"modalidad": "Presencial"
+},
+{
+"id": 51,
+"ocupacion": "Ejecutivo/a de ventas",
+"titulo": "Ejecutivo de Ventas Pymes Ciudad del Este",
+"empresa": "Personal",
+"ciudad": "ciudad-del-este",
+"ciudadNombre": "Ciudad del Este",
+"remoto": false,
+"link": "https://empleos.abc.com.py/ofertas/ejecutivo-de-ventas-pymes-ciudad-del-este-ventas-613",
+"fuente": "ABC Empleos",
+"publicado": "2026-11-17",
+"vence": "2026-11-30",
+"modalidad": "Presencial"
+},
+{
+"id": 52,
+"ocupacion": "Administrativo/a",
+"titulo": "Analista NOC empresas.",
+"empresa": "Personal",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://empleos.abc.com.py/ofertas/analista-noc-empresas-tecnologia-614",
+"fuente": "ABC Empleos",
+"publicado": "2026-11-17",
+"vence": "2026-11-30",
+"modalidad": "Presencial"
+},
+{
+"id": 53,
+"ocupacion": "Supervisor/a",
+"titulo": "SUPERVISOR DE TRANSMISIÓN- ZONA SANTANI",
+"empresa": "Personal",
+"ciudad": "santani",
+"ciudadNombre": "Santaní",
+"remoto": false,
+"link": "https://empleos.abc.com.py/ofertas/supervisor-de-transmision-zona-santani-tecnologia-615",
+"fuente": "ABC Empleos",
+"publicado": "2026-11-17",
+"vence": "2026-11-30",
+"modalidad": "Presencial"
+},
+{
+"id": 54,
+"ocupacion": "Abogado/a",
+"titulo": "ANALISTA LEGAL JUNIOR",
+"empresa": "Azeta Mandatos y Servicios",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://empleos.abc.com.py/ofertas/analista-legal-junior-legal-617",
+"fuente": "ABC Empleos",
+"publicado": "2026-11-17",
+"vence": "2026-12-31",
+"modalidad": "Presencial"
+},
+{
+"id": 55,
 "ocupacion": "Cajero/a",
 "titulo": "Cajero/a - Zona DISTRITO PERSEVERANCIA",
 "empresa": "Nueva Americana",
@@ -704,7 +774,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 51,
+"id": 56,
 "ocupacion": "Diseñador/a gráfico/a",
 "titulo": "Diseñador/a Grafico",
 "empresa": "Empresa confidencial",
@@ -718,7 +788,21 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 52,
+"id": 57,
+"ocupacion": "Atención al cliente",
+"titulo": "Atencion al Cliente (Heladería)",
+"empresa": "Capital Humano",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://empleos.abc.com.py/ofertas/atencion-al-cliente-heladeria-atencion-616",
+"fuente": "ABC Empleos",
+"publicado": "2026-11-16",
+"vence": "2026-12-30",
+"modalidad": "Presencial"
+},
+{
+"id": 58,
 "ocupacion": "Administrativo/a",
 "titulo": "ANALISTA DE PLANIFICACION DE DEMANDA",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -732,7 +816,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 53,
+"id": 59,
 "ocupacion": "Auxiliar de logística",
 "titulo": "ASISTENTE DE COMPRAS",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -746,7 +830,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 54,
+"id": 60,
 "ocupacion": "Médico/a",
 "titulo": "VISITADOR/A MEDICO DERMOCOSMETICA",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -760,7 +844,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 55,
+"id": 61,
 "ocupacion": "Administrativo/a",
 "titulo": "ASISTENTE DE SUCURSAL - CAAGUAZU",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -774,7 +858,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 56,
+"id": 62,
 "ocupacion": "Recursos humanos",
 "titulo": "ASISTENTE DE SELECCIÓN",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -788,7 +872,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 57,
+"id": 63,
 "ocupacion": "Soporte técnico IT",
 "titulo": "Técnico de Soporte TI.",
 "empresa": "Azeta Mandatos y Servicios",
@@ -802,7 +886,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 58,
+"id": 64,
 "ocupacion": "Auxiliar de logística",
 "titulo": "ANALISTA DE COMPRAS",
 "empresa": "Penta S.A",
@@ -816,7 +900,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 59,
+"id": 65,
 "ocupacion": "Guardia de seguridad",
 "titulo": "ANFITRIÓN DE SEGURIDAD SHOPPING MARISCAL",
 "empresa": "Penta S.A",
@@ -830,7 +914,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 60,
+"id": 66,
 "ocupacion": "Personal de limpieza",
 "titulo": "Supervisor de Servicios Generales",
 "empresa": "Penta S.A",
@@ -844,7 +928,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 61,
+"id": 67,
 "ocupacion": "Guardia de seguridad",
 "titulo": "ANFITRIÓN DE SEGURIDAD SHOPPING MARIANO",
 "empresa": "Penta S.A",
@@ -858,7 +942,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 62,
+"id": 68,
 "ocupacion": "Administrativo/a",
 "titulo": "Ejecutivo de Documentaciones",
 "empresa": "Inmobiliaria del Este",
@@ -872,7 +956,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 63,
+"id": 69,
 "ocupacion": "Gerente",
 "titulo": "Gerente de Producto",
 "empresa": "Azeta Mandatos y Servicios",
@@ -886,7 +970,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 64,
+"id": 70,
 "ocupacion": "Supervisor/a",
 "titulo": "Coordinador/a de Estrategia de Sinergias y Servicios Compartidos",
 "empresa": "Azeta Mandatos y Servicios",
@@ -900,7 +984,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 65,
+"id": 71,
 "ocupacion": "Vendedor/a",
 "titulo": "Vendedor/a de Ecommerce",
 "empresa": "Nueva Americana",
@@ -914,7 +998,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 66,
+"id": 72,
 "ocupacion": "Vendedor/a",
 "titulo": "Vendedor/a de Tienda",
 "empresa": "Nueva Americana",
@@ -928,7 +1012,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 67,
+"id": 73,
 "ocupacion": "Diseñador/a UX/UI",
 "titulo": "Auxiliar Comercial",
 "empresa": "Sueñolar",
@@ -942,7 +1026,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 68,
+"id": 74,
 "ocupacion": "Personal de limpieza",
 "titulo": "Técnico en mantenimiento industrial",
 "empresa": "Mercurio",
@@ -956,7 +1040,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 69,
+"id": 75,
 "ocupacion": "Diseñador/a UX/UI",
 "titulo": "Auxiliar de Tesorería",
 "empresa": "Mercurio",
@@ -970,7 +1054,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 70,
+"id": 76,
 "ocupacion": "Diseñador/a UX/UI",
 "titulo": "Auxiliar de Marketing",
 "empresa": "Ferrex",
@@ -984,7 +1068,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 71,
+"id": 77,
 "ocupacion": "Personal de limpieza",
 "titulo": "Operador de Servicios Generales",
 "empresa": "Mercurio",
@@ -998,7 +1082,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 72,
+"id": 78,
 "ocupacion": "Administrativo/a",
 "titulo": "Gestor Administrativo de Directorio",
 "empresa": "Empresa confidencial",
@@ -1012,7 +1096,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 73,
+"id": 79,
 "ocupacion": "Auxiliar de logística",
 "titulo": "Asistente de Compras",
 "empresa": "Sueñolar",
@@ -1026,7 +1110,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 74,
+"id": 80,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "EJECUTIVO COMERCIAL DE LOTE PROGRAMADO",
 "empresa": "Inmobiliaria del Este",
@@ -1040,7 +1124,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 75,
+"id": 81,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Ejecutivo de Negocios Banca Minorista - Suc. Caaguazu",
 "empresa": "Banco Atlas",
@@ -1054,7 +1138,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 76,
+"id": 82,
 "ocupacion": "Gerente",
 "titulo": "Gerente de Sucursal - Suc. Concepción.",
 "empresa": "Banco Atlas",
@@ -1068,7 +1152,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 77,
+"id": 83,
 "ocupacion": "Cajero/a",
 "titulo": "Cajero/o (Horario Nocturno)",
 "empresa": "Capital Humano",
@@ -1082,7 +1166,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 78,
+"id": 84,
 "ocupacion": "Vendedor/a",
 "titulo": "VENDEDOR/A – ZONA INTERIOR",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -1096,7 +1180,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 79,
+"id": 85,
 "ocupacion": "Atención al cliente",
 "titulo": "ASESOR/A DE SERVICIOS -  AUTOMOTRIZ",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -1110,7 +1194,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 80,
+"id": 86,
 "ocupacion": "Administrativo/a",
 "titulo": "ANALISTA COMERCIAL",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -1124,7 +1208,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 81,
+"id": 87,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "EJECUTIVO/A COMERCIAL INMOBILIARIO -ENCARNACIÓN",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -1138,7 +1222,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 82,
+"id": 88,
 "ocupacion": "Gerente",
 "titulo": "JEFE DE SUCURSAL",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -1152,7 +1236,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 83,
+"id": 89,
 "ocupacion": "Vendedor/a",
 "titulo": "JEFE/A DE VENTAS RUBRO AUTOMOTRIZ",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -1166,7 +1250,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 84,
+"id": 90,
 "ocupacion": "Auxiliar de logística",
 "titulo": "SUPERVISOR/A DE LOGÍSTICA",
 "empresa": "Talent Hub PY de Cinthia Meza",
@@ -1180,7 +1264,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 85,
+"id": 91,
 "ocupacion": "Project manager de TI",
 "titulo": "Project Manager.",
 "empresa": "Azeta Mandatos y Servicios",
@@ -1194,7 +1278,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 86,
+"id": 92,
 "ocupacion": "Administrador/a de redes e infraestructura",
 "titulo": "Supervisor/a de Infraestructura",
 "empresa": "Avanza",
@@ -1208,7 +1292,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 87,
+"id": 93,
 "ocupacion": "Supervisor/a",
 "titulo": "Supervisor de cajas",
 "empresa": "Personal",
@@ -1222,7 +1306,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 88,
+"id": 94,
 "ocupacion": "Diseñador/a UX/UI",
 "titulo": "Auxiliar de Depósito (rubro ferreterías)",
 "empresa": "Capital Humano",
@@ -1236,7 +1320,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 89,
+"id": 95,
 "ocupacion": "Personal de limpieza",
 "titulo": "MANTENIMIENTO Y CONSERJERIA",
 "empresa": "GRUPO LA ADMINISTRADORA SRL",
@@ -1250,7 +1334,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 90,
+"id": 96,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Ejecutivo/a Comercial",
 "empresa": "Empresa confidencial",
@@ -1264,7 +1348,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 91,
+"id": 97,
 "ocupacion": "Diseñador/a UX/UI",
 "titulo": "Auxiliar de depósito",
 "empresa": "Empresa confidencial",
@@ -1278,7 +1362,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 92,
+"id": 98,
 "ocupacion": "Auditor/a",
 "titulo": "Junior de Auditoria/Contabilidad",
 "empresa": "BCA - Benítez Codas & Asociados",
@@ -1292,7 +1376,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 93,
+"id": 99,
 "ocupacion": "Repositor/a",
 "titulo": "Picker / Repositor",
 "empresa": "PedidosYa!",
@@ -1306,7 +1390,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 94,
+"id": 100,
 "ocupacion": "Auditor/a",
 "titulo": "Supervisor Auditoria",
 "empresa": "Azeta Mandatos y Servicios",
@@ -1320,7 +1404,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 95,
+"id": 101,
 "ocupacion": "Auditor/a",
 "titulo": "Asistencia de auditoria",
 "empresa": "Azeta Mandatos y Servicios",
@@ -1334,7 +1418,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 96,
+"id": 102,
 "ocupacion": "Mecánico/a automotriz",
 "titulo": "Mecánico Automotriz",
 "empresa": "Santa Rosa Paraguay S.A.",
@@ -1348,7 +1432,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 97,
+"id": 103,
 "ocupacion": "Mecánico/a automotriz",
 "titulo": "Técnico Eléctrico o Electromecánico Junior",
 "empresa": "S.A.C.I H. Petersen",
@@ -1362,7 +1446,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 98,
+"id": 104,
 "ocupacion": "Diseñador/a gráfico/a",
 "titulo": "Diseñador de AutoCAD",
 "empresa": "INREF AC E.A.S.",
@@ -1376,7 +1460,7 @@ window.VAGAS = [
 "modalidad": "Híbrido"
 },
 {
-"id": 99,
+"id": 105,
 "ocupacion": "Mozo/a",
 "titulo": "MOZO",
 "empresa": "La Vienesa S.A.",
@@ -1390,7 +1474,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 100,
+"id": 106,
 "ocupacion": "Diseñador/a UX/UI",
 "titulo": "Auxiliar de Cocina",
 "empresa": "La Vienesa S.A.",
@@ -1404,7 +1488,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 101,
+"id": 107,
 "ocupacion": "Vendedor/a",
 "titulo": "Chofer Vendedor",
 "empresa": "Seltz S.A.",
@@ -1418,7 +1502,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 102,
+"id": 108,
 "ocupacion": "Supervisor/a",
 "titulo": "Sub-Encargada de Tienda",
 "empresa": "Capital Humano",
@@ -1432,7 +1516,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 103,
+"id": 109,
 "ocupacion": "Técnico/a electrónico/a",
 "titulo": "Técnicos Instaladores - Field Service",
 "empresa": "Personal",
@@ -1446,7 +1530,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 104,
+"id": 110,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Asesores Comerciales de seguros (Asunción y CDE)",
 "empresa": "Enfoque Gestión Humana",
@@ -1460,7 +1544,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 105,
+"id": 111,
 "ocupacion": "Agente de call center",
 "titulo": "EJECUTIVO DE TELEVENTAS",
 "empresa": "Personal",
@@ -1474,7 +1558,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 106,
+"id": 112,
 "ocupacion": "Gestor/a de cobranzas",
 "titulo": "Asistente de Cobranzas",
 "empresa": "Capital Humano",
@@ -1488,7 +1572,21 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 107,
+"id": 113,
+"ocupacion": "Administrativo/a",
+"titulo": "Analista Senior de Contabilidad",
+"empresa": "Confidencial",
+"ciudad": "asuncion",
+"ciudadNombre": "Asunción",
+"remoto": false,
+"link": "https://jobs.com.py/es/empleos/administracion-y-finanzas/analista-senior-de-contabilidad-806407",
+"fuente": "Jobs Paraguay",
+"publicado": "2026-11-17",
+"vence": null,
+"modalidad": "Presencial"
+},
+{
+"id": 114,
 "ocupacion": "Administrativo/a",
 "titulo": "Analista de Siniestros",
 "empresa": "ASEGURADORA YACYRETA S.A.",
@@ -1502,7 +1600,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 108,
+"id": 115,
 "ocupacion": "Recepcionista",
 "titulo": "Recepcionista Temporal",
 "empresa": "HIDROVIAS DEL PY (Pricolpar)",
@@ -1516,12 +1614,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 109,
+"id": 116,
 "ocupacion": "Auxiliar de logística",
 "titulo": "Líder de Logística - Área Expedición",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/administracion-y-finanzas/lider-de-logistica-area-expedicion-475505",
 "fuente": "Jobs Paraguay",
@@ -1530,7 +1628,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 110,
+"id": 117,
 "ocupacion": "Cajero/a",
 "titulo": "Cajero/a",
 "empresa": "FIC SA DE FINZANZAS",
@@ -1544,7 +1642,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 111,
+"id": 118,
 "ocupacion": "Auditor/a",
 "titulo": "Asistente de Auditoría",
 "empresa": "EY Building a Better Way - Ernst and Young",
@@ -1558,7 +1656,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 112,
+"id": 119,
 "ocupacion": "Administrativo/a",
 "titulo": "Asistente Administrativo/a",
 "empresa": "Estudio Aduanero Roberto Brugada",
@@ -1572,7 +1670,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 113,
+"id": 120,
 "ocupacion": "Marketing",
 "titulo": "Responsable de Marketing",
 "empresa": "CAMARA DE COMERCIO PARAGUAYO AMERICANA",
@@ -1586,7 +1684,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 114,
+"id": 121,
 "ocupacion": "Recepcionista",
 "titulo": "Recepcionista",
 "empresa": "CAMARA DE COMERCIO PARAGUAYO AMERICANA",
@@ -1600,7 +1698,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 115,
+"id": 122,
 "ocupacion": "Recepcionista",
 "titulo": "Recepcionista",
 "empresa": "Confidencial",
@@ -1614,7 +1712,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 116,
+"id": 123,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Asesor/a Comercial - Banca",
 "empresa": "Sudameris Seguros",
@@ -1628,7 +1726,7 @@ window.VAGAS = [
 "modalidad": "Híbrido"
 },
 {
-"id": 117,
+"id": 124,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Asesor/a Comercial - Banca",
 "empresa": "Sudameris Seguros",
@@ -1642,7 +1740,21 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 118,
+"id": 125,
+"ocupacion": "Otras ocupaciones",
+"titulo": "Asesor/a de Comercial",
+"empresa": "AMX PARAGUAY S.A. (Claro)",
+"ciudad": "ciudad-del-este",
+"ciudadNombre": "Ciudad del Este",
+"remoto": false,
+"link": "https://jobs.com.py/es/empleos/comercial-y-ventas/asesor-a-de-comercial-776378",
+"fuente": "Jobs Paraguay",
+"publicado": "2026-11-17",
+"vence": null,
+"modalidad": "Presencial"
+},
+{
+"id": 126,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Asesor/a de Inversiones",
 "empresa": "FORTALEZA",
@@ -1656,7 +1768,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 119,
+"id": 127,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Ejecutivo/a Comercial B2C",
 "empresa": "LA INDEPENDENCIA DE SEGUROS",
@@ -1670,7 +1782,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 120,
+"id": 128,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Ejecutivo/a Comercial B2B",
 "empresa": "LA INDEPENDENCIA DE SEGUROS",
@@ -1684,7 +1796,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 121,
+"id": 129,
 "ocupacion": "Analista de BI (Business Intelligence)",
 "titulo": "Analista de BI y Transformación Digital",
 "empresa": "PROFARCO SA",
@@ -1698,7 +1810,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 122,
+"id": 130,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Ejecutivo/a Comercial",
 "empresa": "Confidencial",
@@ -1712,7 +1824,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 123,
+"id": 131,
 "ocupacion": "Marketing",
 "titulo": "Analista Junior de Gestión Comercial y Telemarketing",
 "empresa": "CAD IT SOLUTION PROVIDER SA",
@@ -1726,7 +1838,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 124,
+"id": 132,
 "ocupacion": "Ingeniero/a civil",
 "titulo": "Ingeniero/a Civil de Innovación y Desarrollo",
 "empresa": "FISCREA S.A.",
@@ -1740,7 +1852,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 125,
+"id": 133,
 "ocupacion": "Ingeniero/a civil",
 "titulo": "Ingeniero/a Civil",
 "empresa": "CRUZMONTE S.A.",
@@ -1754,12 +1866,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 126,
+"id": 134,
 "ocupacion": "Gerente",
 "titulo": "Gerente de Ingeniería",
 "empresa": "Jobs S.R.L",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/construccion-y-arquitectura/gerente-de-ingenieria-506672",
 "fuente": "Jobs Paraguay",
@@ -1768,7 +1880,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 127,
+"id": 135,
 "ocupacion": "Gerente",
 "titulo": "Gerente de Cómputos y Presupuesto",
 "empresa": "Codas Vuyk",
@@ -1782,7 +1894,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 128,
+"id": 136,
 "ocupacion": "Pintor/a",
 "titulo": "Pintor/a Industrial",
 "empresa": "CERVECERIA PARAGUAYA S.A",
@@ -1796,7 +1908,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 129,
+"id": 137,
 "ocupacion": "Operario/a de producción",
 "titulo": "Operador/a de Planta de Tratamiento de Cullet",
 "empresa": "FABRICA PARAGUAYA DE VIDRIO (FPV)",
@@ -1810,7 +1922,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 130,
+"id": 138,
 "ocupacion": "Cajero/a",
 "titulo": "Cajero/a",
 "empresa": "Confidencial",
@@ -1824,7 +1936,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 131,
+"id": 139,
 "ocupacion": "Mecánico/a automotriz",
 "titulo": "Mecánico/a AIS",
 "empresa": "FABRICA PARAGUAYA DE VIDRIO (FPV)",
@@ -1838,7 +1950,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 132,
+"id": 140,
 "ocupacion": "Mecánico/a automotriz",
 "titulo": "Mecánico/a General",
 "empresa": "FABRICA PARAGUAYA DE VIDRIO (FPV)",
@@ -1852,7 +1964,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 133,
+"id": 141,
 "ocupacion": "Diseñador/a UX/UI",
 "titulo": "Auxiliar Contable",
 "empresa": "RASI SRL",
@@ -1866,7 +1978,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 134,
+"id": 142,
 "ocupacion": "Supervisor/a",
 "titulo": "Supervisor/a de Planta",
 "empresa": "CRUZMONTE S.A.",
@@ -1880,12 +1992,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 135,
+"id": 143,
 "ocupacion": "Administrativo/a",
 "titulo": "Analista de Contraloría Senior",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/analista-de-contraloria-senior-513520",
 "fuente": "Jobs Paraguay",
@@ -1894,12 +2006,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 136,
+"id": 144,
 "ocupacion": "Soporte técnico IT",
 "titulo": "Técnico/a TI Junior",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/tecnico-a-ti-junior-513492",
 "fuente": "Jobs Paraguay",
@@ -1908,12 +2020,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 137,
+"id": 145,
 "ocupacion": "Analista de procesos / mejora continua",
 "titulo": "Planificador/a de Producción Junior",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/planificador-a-de-produccion-junior-513460",
 "fuente": "Jobs Paraguay",
@@ -1922,12 +2034,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 138,
+"id": 146,
 "ocupacion": "Analista de control de calidad",
 "titulo": "Gerente de Calidad",
 "empresa": "Jobs S.R.L",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/gerente-de-calidad-510662",
 "fuente": "Jobs Paraguay",
@@ -1936,12 +2048,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 139,
+"id": 147,
 "ocupacion": "Auxiliar de logística",
 "titulo": "Analista de Compras Junior",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/analista-de-compras-junior-475653",
 "fuente": "Jobs Paraguay",
@@ -1950,12 +2062,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 140,
+"id": 148,
 "ocupacion": "Analista de comercio exterior",
 "titulo": "Analista de Comercio Exterior",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Asunción",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/analista-de-comercio-exterior-475605",
 "fuente": "Jobs Paraguay",
@@ -1964,12 +2076,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 141,
+"id": 149,
 "ocupacion": "Analista de procesos / mejora continua",
 "titulo": "Planificador/a de Materiales",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/planificador-a-de-materiales-475544",
 "fuente": "Jobs Paraguay",
@@ -1978,12 +2090,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 142,
+"id": 150,
 "ocupacion": "Soporte técnico IT",
 "titulo": "Gerente de TI",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/gerente-de-ti-471927",
 "fuente": "Jobs Paraguay",
@@ -1992,12 +2104,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 143,
+"id": 151,
 "ocupacion": "Supervisor/a",
 "titulo": "Encargado/a de Turno",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/encargado-a-de-turno-471917",
 "fuente": "Jobs Paraguay",
@@ -2006,12 +2118,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 144,
+"id": 152,
 "ocupacion": "Supervisor/a",
 "titulo": "Coordinador/a de Producción",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/coordinador-a-de-produccion-471907",
 "fuente": "Jobs Paraguay",
@@ -2020,12 +2132,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 145,
+"id": 153,
 "ocupacion": "Supervisor/a",
 "titulo": "Coordinador/a de Contraloría",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/coordinador-a-de-contraloria-471870",
 "fuente": "Jobs Paraguay",
@@ -2034,12 +2146,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 146,
+"id": 154,
 "ocupacion": "Personal de limpieza",
 "titulo": "Coordinador/a de Mantenimiento",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/coordinador-a-de-mantenimiento-471818",
 "fuente": "Jobs Paraguay",
@@ -2048,12 +2160,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 147,
+"id": 155,
 "ocupacion": "Recursos humanos",
 "titulo": "Analista de Recursos Humanos Junior",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/analista-de-recursos-humanos-junior-471768",
 "fuente": "Jobs Paraguay",
@@ -2062,12 +2174,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 148,
+"id": 156,
 "ocupacion": "Analista de control de calidad",
 "titulo": "Analista de Calidad Junior",
 "empresa": "JOBS",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/analista-de-calidad-junior-471748",
 "fuente": "Jobs Paraguay",
@@ -2076,12 +2188,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 149,
+"id": 157,
 "ocupacion": "Otras ocupaciones",
 "titulo": "Ingeniero/a de Seguridad y Medio Ambiente",
 "empresa": "Jobs S.R.L",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/ingeniero-a-de-seguridad-y-medio-ambiente-476719",
 "fuente": "Jobs Paraguay",
@@ -2090,12 +2202,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 150,
+"id": 158,
 "ocupacion": "Analista de control de calidad",
 "titulo": "Ingeniero/a de Calidad Senior",
 "empresa": "Jobs S.R.L",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/ingeniero-a-de-calidad-senior-476682",
 "fuente": "Jobs Paraguay",
@@ -2104,12 +2216,12 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 151,
+"id": 159,
 "ocupacion": "Otras ocupaciones",
 "titulo": "Ingeniero/a de Producto",
 "empresa": "Jobs S.R.L",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/industrial-y-produccion/ingeniero-a-de-producto-476615",
 "fuente": "Jobs Paraguay",
@@ -2118,21 +2230,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 152,
-"ocupacion": "Cajero/a",
-"titulo": "Cajero/a",
-"empresa": "Confidencial",
-"ciudad": "caaguazu",
-"ciudadNombre": "Caaguazú",
-"remoto": false,
-"link": "https://jobs.com.py/es/empleos/industrial-y-produccion/cajero-a-476594",
-"fuente": "Jobs Paraguay",
-"publicado": "2026-11-02",
-"vence": null,
-"modalidad": "Presencial"
-},
-{
-"id": 153,
+"id": 160,
 "ocupacion": "Agente de call center",
 "titulo": "Jefe/a de Televentas",
 "empresa": "Atlantic SAECA",
@@ -2146,7 +2244,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 154,
+"id": 161,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Ejecutivo/a Comercial Junior",
 "empresa": "Envaco SA",
@@ -2160,7 +2258,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 155,
+"id": 162,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Ejecutivo/a Comercial",
 "empresa": "Luxacril",
@@ -2174,7 +2272,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 156,
+"id": 163,
 "ocupacion": "Operario/a de producción",
 "titulo": "Operario/a de Producción",
 "empresa": "ADIUM (EX FAPASA)",
@@ -2188,7 +2286,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 157,
+"id": 164,
 "ocupacion": "Operario/a de producción",
 "titulo": "Aprendiz de Producción",
 "empresa": "ADIUM (EX FAPASA)",
@@ -2202,7 +2300,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 158,
+"id": 165,
 "ocupacion": "Operario/a de producción",
 "titulo": "Aprendices de Producción",
 "empresa": "ADIUM (EX FAPASA)",
@@ -2216,7 +2314,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 159,
+"id": 166,
 "ocupacion": "Supervisor/a",
 "titulo": "Supervisor/a de Producción",
 "empresa": "Confidencial",
@@ -2230,7 +2328,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 160,
+"id": 167,
 "ocupacion": "Administrativo/a",
 "titulo": "Analista de Gabinete",
 "empresa": "Super Spuma",
@@ -2244,7 +2342,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 161,
+"id": 168,
 "ocupacion": "Auxiliar de logística",
 "titulo": "Gerente de Deposito y Transporte",
 "empresa": "MV Aceros",
@@ -2258,7 +2356,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 162,
+"id": 169,
 "ocupacion": "Vendedor/a",
 "titulo": "Vendedor/a Externo/a",
 "empresa": "test c",
@@ -2272,7 +2370,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 163,
+"id": 170,
 "ocupacion": "Auxiliar de logística",
 "titulo": "Ayudante de Almacén",
 "empresa": "CERVEPAR S.A.",
@@ -2286,7 +2384,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 164,
+"id": 171,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Asesor/a de Ventas",
 "empresa": "Hi Servicios Generales SRL",
@@ -2300,12 +2398,12 @@ window.VAGAS = [
 "modalidad": "Híbrido"
 },
 {
-"id": 165,
+"id": 172,
 "ocupacion": "Auxiliar de logística",
 "titulo": "Gerente de Logística",
 "empresa": "Jobs S.R.L",
-"ciudad": "asuncion",
-"ciudadNombre": "Villeta",
+"ciudad": null,
+"ciudadNombre": null,
 "remoto": false,
 "link": "https://jobs.com.py/es/empleos/logistica-y-transporte/gerente-de-logistica-506698",
 "fuente": "Jobs Paraguay",
@@ -2314,7 +2412,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 166,
+"id": 173,
 "ocupacion": "Marketing",
 "titulo": "Ad Manager de Performance Digital",
 "empresa": "CHENA S.A. (Grupo Chena)",
@@ -2328,7 +2426,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 167,
+"id": 174,
 "ocupacion": "Gerente",
 "titulo": "Ad Manager – Campañas Digitales",
 "empresa": "CHENA S.A. (Grupo Chena)",
@@ -2342,7 +2440,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 168,
+"id": 175,
 "ocupacion": "Ejecutivo/a de ventas",
 "titulo": "Asesor/a de Inversiones",
 "empresa": "VIVABIEN",
@@ -2356,35 +2454,21 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 169,
+"id": 176,
 "ocupacion": "Otras ocupaciones",
-"titulo": "Agente de Viajes",
-"empresa": "Vuela Viajes",
+"titulo": "Asesor/a de Experiencia del Cliente",
+"empresa": "FIC SA DE FINZANZAS",
 "ciudad": "asuncion",
 "ciudadNombre": "San Lorenzo",
 "remoto": false,
-"link": "https://jobs.com.py/es/empleos/otros/agente-de-viajes-516062",
+"link": "https://jobs.com.py/es/empleos/otros/asesor-a-de-experiencia-del-cliente-781973",
 "fuente": "Jobs Paraguay",
-"publicado": "2026-11-09",
+"publicado": "2026-11-17",
 "vence": null,
 "modalidad": "Presencial"
 },
 {
-"id": 170,
-"ocupacion": "Vendedor/a",
-"titulo": "Vendedor/a de Repuestos",
-"empresa": "Rieder & Cia SACI",
-"ciudad": "ciudad-del-este",
-"ciudadNombre": "Ciudad del Este",
-"remoto": false,
-"link": "https://jobs.com.py/es/empleos/otros/vendedor-a-de-repuestos-578120",
-"fuente": "Jobs Paraguay",
-"publicado": "2026-09-17",
-"vence": null,
-"modalidad": "Presencial"
-},
-{
-"id": 171,
+"id": 177,
 "ocupacion": "Recursos humanos",
 "titulo": "Analista de Búsqueda y Selección",
 "empresa": "JOBS",
@@ -2398,7 +2482,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 172,
+"id": 178,
 "ocupacion": "Diseñador/a UX/UI",
 "titulo": "Auxiliar Contable Junior",
 "empresa": "Casino Slots del Sol",
@@ -2412,7 +2496,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 173,
+"id": 179,
 "ocupacion": "Auxiliar contable",
 "titulo": "Analista Contable",
 "empresa": "Casino Slots del Sol",
@@ -2426,7 +2510,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 174,
+"id": 180,
 "ocupacion": "Soporte técnico IT",
 "titulo": "Encargado de TI",
 "empresa": "PROFARCO SA",
@@ -2440,7 +2524,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 175,
+"id": 181,
 "ocupacion": "Supervisor/a",
 "titulo": "Coordinador/a de Negocios Internacionales",
 "empresa": "LABORATORIO Y HERBORISTERIA SANTA MARGARITA S.A.",
@@ -2454,7 +2538,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 176,
+"id": 182,
 "ocupacion": "Administrativo/a",
 "titulo": "Analista SAP",
 "empresa": "Casa Boller S.A.",
@@ -2468,7 +2552,7 @@ window.VAGAS = [
 "modalidad": "Presencial"
 },
 {
-"id": 177,
+"id": 183,
 "ocupacion": "Auxiliar de logística",
 "titulo": "Encargado/a de Depósito",
 "empresa": "KEEPER - GRUPO SENSORMATIC S.A",
